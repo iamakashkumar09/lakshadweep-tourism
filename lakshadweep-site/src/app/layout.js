@@ -3,7 +3,7 @@ import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import LoginModal from "@/components/features/LoginModal";
 import BookingModal from "@/components/features/BookingModal";
-import SearchModal from "@/components/features/SearchModal"; // <--- Add Import
+import SearchModal from "@/components/features/SearchModal"; // <--- 1. IMPORT THIS
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
           {children}
           <LoginModal />
           <BookingModal />
-          <SearchModal /> {/* <--- Add Component Here */}
+          <SearchModal /> {/* <--- 2. ADD THIS TAG */}
         </AppProvider>
       </body>
     </html>
