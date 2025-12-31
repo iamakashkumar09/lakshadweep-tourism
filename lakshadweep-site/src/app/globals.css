@@ -11,46 +11,95 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
-  overflow-x: hidden; /* Fixes horizontal scroll */
+  overflow-x: hidden;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ... keep your standard animations (fadeIn, slideUp, etc.) ... */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.slide-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+
+/* ----- NEW WATER WAVE EFFECT ----- */
+
+/* 1. The Water Color Effect (Kept from before) */
+.text-water-wave {
+  background: linear-gradient(
+    -45deg,
+    #0e7490 0%,   /* Deep Teal */
+    #06b6d4 25%,  /* Cyan */
+    #ffffff 50%,  /* White Crest */
+    #06b6d4 75%,  /* Cyan */
+    #0e7490 100%  /* Deep Teal */
+  );
+  background-size: 300% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-position: 0% 50%;
+  animation: water-flow 4s ease-in-out infinite alternate;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes water-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* 2. NEW: Physical Wave Motion Animation */
+@keyframes wave-motion {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); } /* Moves text up */
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Utility to apply the physical wave */
+.animate-wave {
+  display: inline-block; /* Required for transform to work */
+  animation: wave-motion 3s ease-in-out infinite;
 }
 
-.slide-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Cinematic Reveal (Entrance) */
+@keyframes cinematicReveal {
+  from { opacity: 0; transform: translateY(30px) scale(1.1); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.animate-cinematic {
+  opacity: 0;
+  animation: cinematicReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
+/* Cursor Blink Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+.animate-blink {
+  animation: blink 1s step-end infinite;
+  color: #22d3ee; /* Cyan cursor color */
+}
+
+/* Beautiful Pearl/Holographic Text Gradient */
+.text-shimmer {
+  background: linear-gradient(
+    to right, 
+    #94a3b8 0%,    /* Slate-400 */
+    #e2e8f0 20%,   /* Slate-200 */
+    #22d3ee 40%,   /* Cyan */
+    #ffffff 50%,   /* White highlight */
+    #22d3ee 60%,   /* Cyan */
+    #e2e8f0 80%,   /* Slate-200 */
+    #94a3b8 100%   /* Slate-400 */
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }
