@@ -114,7 +114,7 @@ export default function Home() {
                 {/* NOTE: Replace this with <source src="/hero.mp4" ... /> 
                    if you downloaded the video to your public folder.
                 */}
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                      <source src="https://res.cloudinary.com/dvu01c8id/video/upload/v1767174255/Vn20251231_132017_aelexj.mp4" type="video/mp4" />
              </video>
              {/* Gradient Overlay for contrast */}
              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60"></div>
